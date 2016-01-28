@@ -1,33 +1,23 @@
-# replace the contents of this comment with your name
+# John Swain
 import random
 
-# -------------------------------------------------------------------
 # this is the generateNumber function
-# it has one parameter:
-#   'topLimit' which is the top limit for the random number generator
+#'topLimit' which is the top limit for the random number generator
 # the function returns the random number generated to its caller
-def generateNumber( topLimit ):
-    
-    # TO DO: ####################################################
-    # Write code in this function that calculates and           #
-    # returns a random number between 1 and the user's topLimit #
-    #############################################################
-    
-# end of generateNumber function -------------------------------------
 
+def generateNumber( topLimit ):  
+    return random.randint(1,topLimit)
 
-# -------------------------------------------------------------------
 # this is the askUserToGuess function
-# it has two parameters:
-#   the 'times' parameter is the number of guesses allowed
-#   the 'secretNumber' parameter is the secret, random number
 # the function returns one of two values:
 #   return True if the user guessed the answer correctly
 #   return False if the user did not guess the answer correctly
+
 def askUserToGuess( times, secretNumber ):
 
     # this loop cycles through all the user guesses
     for guessesTaken in range(1, times+1):
+        
         print('Take your guess #' + str(guessesTaken) + ': ')
         guess = int(input())
 
@@ -35,56 +25,39 @@ def askUserToGuess( times, secretNumber ):
             return True
         
     return False
-# end of askUserToGuess function ----------------------------------
 
-
-# -------------------------------------------------------------------
 # this is the evaluateAnswer function
 # it has two parameters:
 #   the 'userGuess' parameter is the answer entered by the user
 #   the 'userSecretNumber' parameter is the randomly generated number
 def evaluateAnswer( userGuess, userSecretNumber ):
     
-    # TO DO: ####################################################
-    # Write code in this function that compares userGuess and   #
-    # userSecretNumber. The code should:                        #
-    # 1. If the user guess is smaller than the secret number,   #
-    #    tell the user their guess is too low, and return False #
-    # 2. If the user guess is greater than the secret number,   #
-    #    tell the user their guess is too high, and return False#
-    # 3. If the user guess and secret number are the same,      #
-    #    return True, no message prints to the screen           #
-    #############################################################
-
-# end of evaluateAnswer function -------------------------------------
+    if userGuess > userSecretNumber:
+        print("too high")
+        return False
+    
+    if userGuess < userSecretNumber:
+        print("too low")
+        return false
+    
+    else:
+        return True
 
 
-# -------------------------------------------------------------------
 # this is the playGame function
 # it has one parameter:
 #   'showAnswer' is a Boolean value, if that Boolean value is:
 #       True, we'll show the right answer on the screen
 #       False, we won't show the right answer on the screen
 def playGame( showAnswer ):
-    
-    # TO DO: ####################################################
-    # Write code in this function that                          #
-    # 1. Greets the user                                        #
-    # 2. Asks the user to choose the upper limit of the random  #
-    #    number generator. Store the user's response in a       #
-    #    variable you define                                    #
-    # 3. Asks the user to choose a total number of guesses.     #
-    #    Store the user's response in a local                   #
-    #    variable called 'totalGuesses'                         #
-    # 4. Generates a random number using the generateNumber     #
-    #    function. Ensure the random number is between 1 and    #
-    #    the user's choice for the upper limit. Store this      #
-    #    number in the local variable 'theNumber'               #
-    # 5. Tell the user to guess a number between 1 and the      #
-    #    upper limits, and tell the user how many guesses they  #
-    #    have in total                                          #
-    #############################################################
 
+    topLimit = int(input("Hello player, welcome to the guessing game!\nPlease pick a maximum number.\n"))
+
+    totalGuesses = int(input("Before you start guessing how many tries do you think you'll take?\n"))
+
+    theNumber = generateNumber( topLimit )
+
+    print("Now guess a number between 1 and " + str(topLimit)+ " ." +" You have " + str(totalGuesses) + " guesses.")
 
     # you don't need to change anything below this comment ##############
     # ///////////////////////////////////////////////////////////////////
@@ -97,4 +70,3 @@ def playGame( showAnswer ):
         print('Good job! You guessed my number!')
     else:
         print('Nope. The number I was thinking of was ' + str(theNumber))
-# end of playGame function -----------------------------------------
